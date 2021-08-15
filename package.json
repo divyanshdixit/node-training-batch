@@ -1,0 +1,22 @@
+{
+  "name": "node_demo",
+  "version": "1.0.0",
+  "description": "Node demo practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/divyanshdixit/node-training-batch.git"
+  },
+  "author": "Divyansh Dixit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/divyanshdixit/node-training-batch/issues"
+  },
+  "homepage": "https://github.com/divyanshdixit/node-training-batch#readme",
+  "dependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
