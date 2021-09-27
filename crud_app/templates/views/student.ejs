@@ -1,0 +1,18 @@
+<%- include('../partials/header')%>
+<div class="col-md-12">
+    <h1> <%= heading %> </h1>
+
+    <%  if(data.length){
+        data.forEach((val)=>{ %>
+            <h3> Name: <%= val.name %></h3>
+            <p> Student Id: <%= val.id%></p>
+            <p> City: <%= val.city%></p>
+            <p> Standard: <%= val.standard %></p>
+        <% })}else{ %>
+            <h4> No records found! </h4>
+    <%}%>
+
+    <%- include('../partials/addform') %>      
+</div>
+
+    <%- include('../partials/footer')%>

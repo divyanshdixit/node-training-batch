@@ -1,0 +1,41 @@
+{
+  "name": "expressapp",
+  "version": "1.0.0",
+  "description": "Express js application ",
+  "main": "app.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/divyanshdixit/node-training-batch.git"
+  },
+  "keywords": [
+    "Express",
+    "js",
+    "Node",
+    "js"
+  ],
+  "author": "Divyansh Dixit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/divyanshdixit/node-training-batch/issues"
+  },
+  "homepage": "https://github.com/divyanshdixit/node-training-batch#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-blocks": "^0.2.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-partials": "^0.3.0",
+    "express-validator": "^6.12.1",
+    "mongoose": "^6.0.6",
+    "nodemon": "^2.0.12",
+    "react-scripts": "4.0.1",
+    "validator": "^13.6.0"
+  }
+}

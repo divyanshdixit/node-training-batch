@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Quotes </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="quotes">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card text-center" style="width: 18rem; margin:0 auto; height: 250px">
+                        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                        <div id="tweet-share" style="text-align: right;"> 
+                            <a href="javascript:void(0)" > <img src="./images/tweet_logo.jpg" width="50" height="40"/> </a> 
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title"></h5>
+                          <p class="card-text" id="dynamicQuotes"> </p>
+                          <h1 class=""> </h1>
+                          <h6 class="" id="author"> </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" id="quote-btn"> Change Quotes </button>
+    </div>
+
+    <script>
+        
+        const quotes = document.getElementById('dynamicQuotes');
+        const author = document.getElementById('author');
+        const tweet = document.getElementById('tweet-share');
+        var singleQuoteObj = {};
+
+        const getNewQuotes = (data) => {
+            
+            let randNumber = Number((Math.random()*1000).toFixed(0)); // Math.floor(Math.random()*10); // 0 to 1
+            // console.log(randNumber, data[randNumber].author);
+            let quotesData = data[randNumber];
+            // make single quote obj avaiable to global:
+            singleQuoteObj = quotesData;
+
+            quotes.innerHTML = quotesData.text
+
+            if(quotesData.author == null)
+                author.innerHTML = 'By Unknown';
+            else
+                author.innerHTML = `By ${quotesData.author}`;
+        }
+
+        const getQuotes = async () => {
+            try{
+                const quotesApi = "https://type.fit/api/quotes";
+                let data = await fetch(quotesApi)
+                let dataJsonObj = await data.json();
+                console.log(data, dataJsonObj);
+                getNewQuotes(dataJsonObj);
+            }catch(err){
+                if(err) throw err;
+            }
+        }
+
+        document.getElementById('quote-btn').onclick = getQuotes;
+        getQuotes();
+
+        const shareOnTweet = () => {
+            let tweeturl = `https://twitter.com/intent/tweet?text=${singleQuoteObj.text} - By ${singleQuoteObj.author}`;
+            // it'll open the goven url at the same tab:
+            // window.location.href = tweeturl;
+
+            // this will open given url at different tab
+            window.open(tweeturl);
+        }
+
+        tweet.onclick = shareOnTweet;
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <div class="card text-center" style="width: 18rem; margin:0 auto">
+                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                <div id="weather-condition"> 
+                    <span id="weatherStatus"> </span>
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title location">{%location%}, {%country%}</h5>
+                  <p class="card-text date" id="date"> </p>
+                  <h1 class="temp"> {%tempVal%}°C </h1>
+                  <h6 class="temp_min_max"> Min {%tempMin%}°C | Max {%tempMax%}°C </h6>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const currentDate = document.getElementById('date');
+        const weatherIcon = document.getElementById('weather-condition');
+        const weatherStatus = document.getElementById('weatherStatus');
+
+        const tempStatus = "{%tempStatus%}";
+
+        const weekDays = ["SunDay", "MonDay", "TueDay", "WednesDay", "Thursday", "Friday", "Saturday", "Sunday"];
+        const months = ["January", "February", "March", "April", "May", "June" ,"July", "August", "September", "October", "November", "December"];
+
+        const getCurrentDay = () => {
+            let currentTime = new Date();
+            return weekDays[currentTime.getDay()].substring(0,3) ;
+        }
+
+        const getCurrentTime = () => {
+            let currentTime = new Date();
+            console.log(currentTime.getMonth())
+            var month = currentTime.getMonth();
+            var monthInWords = months[month].substring(0,3);
+            var day = currentTime.getDate();
+            var year = currentTime.getFullYear();
+
+            var hours = currentTime.getHours();
+            var mins = currentTime.getMinutes();
+            if(mins < 10){
+                mins = "0" + mins
+            }
+
+            let suffix = "AM";
+            if(hours >= 12){
+                suffix = "PM";
+                // to show in 12 hours format:
+                hours = hours - 12;
+                if(hours < 10){
+                    hours = "0" + hours;
+                }
+            }
+
+            return `${monthInWords} ${day} | ${hours}:${mins} ${suffix}`;
+        }
+
+        currentDate.innerHTML = `${getCurrentDay()} | ${getCurrentTime()}`
+        weatherStatus.innerHTML = tempStatus
+    </script>
+</body>
+</html>

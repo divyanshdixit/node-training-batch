@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Node demo practice",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "npm test"
   },
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/divyanshdixit/node-training-batch#readme",
   "dependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "requests": "^0.3.0"
   }
 }

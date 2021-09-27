@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> <%= title %> </h1>
+    <h1> <%= errors %> </h1>
+    
+    <form method="post" action="/login">
+        <input type="text" name="username" value= "<%= user.username %>" />
+        <% if(errors.username){ %>
+            <p> <%= errors.username.msg %></p>
+        <%}%>
+        <input type="text" name="password" value= "<%= user.password %>" />
+        <% if(errors.password){ %>
+            <p> <%= errors.password.msg %></p>
+        <%}%>
+        <input type="text" name="cpassword" value=""/>
+        <% if(errors.cpassword){ %>
+            <p> <%= errors.cpassword.msg %></p>
+        <%}%>
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
+</html>
