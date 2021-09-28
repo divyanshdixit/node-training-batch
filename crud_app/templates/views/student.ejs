@@ -1,16 +1,31 @@
 <%- include('../partials/header')%>
 <div class="col-md-12">
     <h1> <%= heading %> </h1>
+    <div class="row">
+        
+        <div class="col-md-12">
+            <%- include('../partials/filter_form') %>
+        </div>
 
     <%  if(data.length){
         data.forEach((val)=>{ %>
-            <h3> Name: <%= val.name %></h3>
-            <p> Student Id: <%= val.id%></p>
-            <p> City: <%= val.city%></p>
-            <p> Standard: <%= val.standard %></p>
+            <div class="col-md-3">
+                <h3> Name: <%= val.name %></h3>
+                <p> Email: <%= val.email %></p>
+                <p> Student Id: <%= val.id%></p>
+                <p> City: <%= val.city%></p>
+                <p> Standard: <%= val.standard %></p>
+
+                <a href="/student/edit/<%=val.id%>" class="btn btn-secondary">Edit </a>
+                <a href="/student/delete/<%=val.id%>" class="btn btn-danger">Delete </a>
+            </div>
+
         <% })}else{ %>
-            <h4> No records found! </h4>
-    <%}%>
+            <div class="col-md-12">
+                <h4> No records found! </h4>
+            </div>
+        <%}%>
+    </div>
 
     <%- include('../partials/addform') %>      
 </div>
