@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
-const port = 4000;
 // options:
 
 const options = {
     autoIndex:true,
-
 }
 
 // connect function recives an callback with one error parameter 
@@ -47,7 +45,7 @@ reconnectTries
 const studentSchema = new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:true,
     },
     email:{
         type:String,
@@ -60,7 +58,7 @@ const studentSchema = new mongoose.Schema({
         unique:true,
     },
     city:String,
-    standard:Number,
+    standard:String,
     created_at:{
         type:Date,
         default:Date.now

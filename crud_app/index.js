@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+// 
 const app = express();
 var studentRouter = require('./routes/student');
 
@@ -12,7 +13,8 @@ app.set('views', staticPath);
 app.set('view engine', 'ejs');
 
 // using static file path
-app.use(express.static('public'))
+console.log(path.join(__dirname,'/public'))
+app.use(express.static(path.join(__dirname,'/public')))
 
 // parse data in urlencoded and pass to body in json format
 app.use(bodyParser.urlencoded({extended:false}));
