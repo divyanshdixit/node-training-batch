@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 // 
 const app = express();
 var studentRouter = require('./routes/student');
+var orderRouter = require('./routes/order');
 
 const staticPath = path.join(__dirname, './templates/views')
 
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 app.use('/student', studentRouter);
+app.use('/order', orderRouter);
 
 app.listen(4000, () => {
     console.log(`Server is running on port 4000!`);

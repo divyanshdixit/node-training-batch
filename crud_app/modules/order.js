@@ -16,47 +16,55 @@ conn.then(()=> {
 
 // now make the schema for orders database and orderItem:
 
-const orderItemSchema = new mongoose.Schema({
-    sku: Number,
-    name: String,
-    quantity: Number,
-    pricing:{
-        retail:{
-            type:Number
-        },
-        sale:{
-            type:Number
-        },
-        discount:{
-            type:Number
-        }
-    }
+
+const itemSchema = new mongoose.Schema({
+    item_id:String,
+    price:Number
+    // sku: Number,
+    // name: String,
+    // quantity: Number,
+    // pricing:{
+    //     retail:{
+    //         type:Number
+    //     },
+    //     sale:{
+    //         type:Number
+    //     },
+    //     discount:{
+    //         type:Number
+    //     }
+    // }
     })
 
 const orderSchema = new  mongoose.Schema({
-    user_id: {
-        type:mongoose.Schema.Types.ObjectId, 
-        ref:'user'
-    } ,
-    order_items: [orderItemSchema],
-    shipping_address:{
-        street: {
-            type:String,
-            required:true
-        },
-        city:{
-            type:String,
-            required:true
-        },
-        state:{
-            type:String,
-            required:true
-        },
-        zip:{
-            type:String,
-            required:true
-        }
+    // user_id: {
+    //     type:mongoose.Schema.Types.ObjectId, 
+    //     ref:'user'
+    // } ,
+    order_id:String,
+    order_items: [itemSchema],
+    address:String,
+    discount:{
+        type:Number
     },
+    // shipping_address:{
+    //     street: {
+    //         type:String,
+    //         required:true
+    //     },
+    //     city:{
+    //         type:String,
+    //         required:true
+    //     },
+    //     state:{
+    //         type:String,
+    //         required:true
+    //     },
+    //     zip:{
+    //         type:String,
+    //         required:true
+    //     }
+    // },
     total:Number
 })
 
